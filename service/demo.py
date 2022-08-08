@@ -1,4 +1,13 @@
 import re
-#1HGPJ72XXVF986395
-input="1HGPJ72X1VF986398"
-print(re.search("^[1-9]{1}[A-Za-z]{4}[0-9]{2}[A-Za-z]{4}[0-9]{6}$", input))
+import mysql.connector as mysql
+myconnection = mysql.connect(
+    user='root',
+    port='3306',
+    password='Tel@12345',
+    host='127.0.0.1', database='vinnumbers', auth_plugin='mysql_native_password'
+)
+mycursor = myconnection.cursor()
+vinnumber="vinnumber";
+SQl_query = "INSERT INTO allvinnumbers (VIN) VALUES ('"+vinnumber+"')"
+mycursor.execute(SQl_query)
+myconnection.commit()

@@ -3,8 +3,14 @@
 
 import random
 import re
+import datetime
+import time
+from dao.vinDao import VinDao
+
+
 
 class VinService:
+  dao= VinDao();
   def getManufacturer(self):
     manufacturer_list = ["HG", "PG", "TY", "RE", "HJ", "KL"]
     rand_idx = random.randrange(len(manufacturer_list))
@@ -45,6 +51,7 @@ class VinService:
     vinNumbers = []
     for number in range(inputNumber):
       self.aggregateVinParts(number,vinNumbers)
+    self.dao.insertVinIntable(vinNumbers)
     return vinNumbers
 
   def aggregateVinParts(self,number,vinNumbers):
