@@ -17,13 +17,17 @@
             <input type="text" id="vinNumber" name="vinNumber">
           <center><input class="file_submit" value="Validate" type="Submit"></center>
         </form>
-            <form class="grid" action="/retrieveVIN" method="POST">
+        <form class="grid" action="/showVI" method="POST">
                 <label>Enter the time intervel::</label>
                 <input type="datetime-local" id="fromTime" name="fromTime">
                 <input type="datetime-local" id="toTime" name="toTime">
                 <center><input class="file_submit" value="FetchVIN" type="Submit"></center>
         </form>
-    </body>
+        <form class="grid" action="/retrieveVIN" method="POST">
+          <label for="vinNumber">Get already created VIN Numbers:</label>
+            <input type="text" id="vinCount" name="vinCount">
+          <center><input class="file_submit" value="Get VIN" type="Submit"></center>
+        </form>
     </body>
 
 </html>

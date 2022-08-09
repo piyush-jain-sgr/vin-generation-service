@@ -7,7 +7,7 @@ import datetime
 import time
 from dao.vinDao import VinDao
 
-
+from model.VinDetails import VinDetails
 
 class VinService:
   dao= VinDao();
@@ -59,3 +59,15 @@ class VinService:
 
   def validateVIN(self,inputVIN):
     return re.search("^[1-9]{1}[A-Za-z]{4}[0-9]{2}[A-Za-z]{4}[0-9]{6}$", inputVIN)
+
+  def getVINfromDB(self, count):
+    allVINTableData = self.dao.retreiveAllVin()
+    VINDetailsList =[]
+    requestedVIN=[]
+    for row in allVINTableData:
+      VINDetailsList.append(row[0])
+    for VIN in range(0,count):
+      rand_idx = random.randrange(len(VINDetailsList))
+      if VINDetailsList[rand_idx] not in requestedVIN:
+        requestedVIN.append(VINDetailsList[rand_idx])
+    return requestedVIN

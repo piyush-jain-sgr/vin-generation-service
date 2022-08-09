@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from service.VinService import VinService
 
-app = Flask(__name__,template_folder="C:/Users/31817/PycharmProjects/Handson1/templates")
+app = Flask(__name__,template_folder="C:/Users/31817/PycharmProjects/vin-generation-service/templates")
 vinService = VinService()
 
 @app.route('/')
@@ -22,6 +22,19 @@ def validateVIN():
     inputVIN = (requestParameters['vinNumber'])
     isvalidvin = vinService.validateVIN(inputVIN)
     return render_template('validate.html', isvalidvin=isvalidvin)
+
+@app.route('/showVI', methods=['POST', 'GET'])
+def showVIN():
+    timeInterval = request.form.to_dict()
+    vinNumbers=vinService.showVINfromDB(timeInterval)
+    return render_template('showVIN.html')
+
+@app.route('/retrieveVIN', methods=['POST', 'GET'])
+def retrieveVIN():
+    parameter = request.form.to_dict()
+    count = (parameter['vinCount'])
+    list = vinService.getVINfromDB(int(count))
+    return render_template('vin.html', vinNumbers=list)
 
 if __name__ == "__main__":
     app.run(debug=True)
