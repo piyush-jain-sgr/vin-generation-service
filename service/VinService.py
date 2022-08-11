@@ -3,8 +3,6 @@
 
 import random
 import re
-import datetime
-import time
 from dao.vinDao import VinDao
 
 from model.VinDetails import VinDetails
@@ -71,3 +69,9 @@ class VinService:
       if VINDetailsList[rand_idx] not in requestedVIN:
         requestedVIN.append(VINDetailsList[rand_idx])
     return requestedVIN
+
+  def showVINfromDB(self,timeInterval):
+    fromTime=(timeInterval['fromTime'])
+    toTime= (timeInterval['toTime'])
+    vinNumbers=self.dao.retreiveSelectedVin(fromTime,toTime)
+    return vinNumbers

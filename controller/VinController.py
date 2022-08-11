@@ -27,7 +27,7 @@ def validateVIN():
 def showVIN():
     timeInterval = request.form.to_dict()
     vinNumbers=vinService.showVINfromDB(timeInterval)
-    return render_template('showVIN.html')
+    return render_template('showVIN.html',vinNumbers=vinNumbers)
 
 @app.route('/retrieveVIN', methods=['POST', 'GET'])
 def retrieveVIN():
