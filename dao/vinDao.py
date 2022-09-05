@@ -28,8 +28,6 @@ class VinDao:
         myconnection.close()
         return result
     def retreiveSelectedVin(self, fromTime, toTime):
-        print(fromTime)
-        print(toTime)
         myconnection=self.connectToDatabase()
         mycursor=myconnection.cursor()
         sql = "SELECT * FROM allvinnumbers WHERE created_time BETWEEN '"+fromTime+"' and '"+toTime+"'"
