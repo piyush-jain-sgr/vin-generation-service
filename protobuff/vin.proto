@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package vingenprotobuf;
+
+service ServiceParentName {
+  rpc yourServiceName(Your request message name) returns (your response message name )
+}
+
+message VinList {
+  string vin_id=1;
+  string vin_name=2;
+}
